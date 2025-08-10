@@ -6,7 +6,7 @@
             padding: 0;
         }
 
-        /* Header style */
+
         header {
             background-color: #4CAF50;
             color: white;
@@ -14,17 +14,17 @@
             padding: 15px;
         }
 
-        /* Timeline container */
+
         #timeline {
             padding: 20px;
         }
 
-        /* Each event */
+
         .event {
             margin-bottom: 15px;
         }
 
-        /* Marker dot */
+
         .marker {
             display: inline-block;
             width: 15px;
@@ -34,12 +34,12 @@
             margin-right: 10px;
         }
 
-        /* Event label text */
+
         .label {
             display: inline-block;
         }
 
-        /* Modal (just base style, hidden by default) */
+
         #modal {
             display: none;
             background-color: rgba(0,0,0,0.5);
