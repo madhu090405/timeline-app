@@ -1,0 +1,58 @@
+[
+  {
+    "year": 1990,
+    "title": "World Wide Web Invented",
+    "description": "Tim Berners-Lee invented the World Wide Web.",
+    "imageURL": "https://via.placeholder.com/300x200?text=1990",
+    "category": "Technology"
+  },
+  {
+    "year": 2001,
+    "title": "Wikipedia Launched",
+    "description": "Wikipedia launched as a free online encyclopedia.",
+    "imageURL": "https://via.placeholder.com/300x200?text=2001",
+    "category": "Education"
+  },
+  {
+    "year": 2004,
+    "title": "Facebook Founded",
+    "description": "Mark Zuckerberg launches Facebook.",
+    "imageURL": "https://via.placeholder.com/300x200?text=2004",
+    "category": "Social Media"
+  },
+  {
+    "year": 2007,
+    "title": "First iPhone Released",
+    "description": "Apple releases the first iPhone.",
+    "imageURL": "https://via.placeholder.com/300x200?text=2007",
+    "category": "Technology"
+  },
+  {
+    "year": 2010,
+    "title": "Instagram Launched",
+    "description": "Instagram photo-sharing app goes live.",
+    "imageURL": "https://via.placeholder.com/300x200?text=2010",
+    "category": "Social Media"
+  },
+  {
+    "year": 2012,
+    "title": "Curiosity Rover Lands on Mars",
+    "description": "NASA's Curiosity rover successfully lands on Mars.",
+    "imageURL": "https://via.placeholder.com/300x200?text=2012",
+    "category": "Science"
+  },
+  {
+    "year": 2020,
+    "title": "COVID-19 Pandemic",
+    "description": "The world experiences a global pandemic.",
+    "imageURL": "https://via.placeholder.com/300x200?text=2020",
+    "category": "Health"
+  },
+  {
+    "year": 2024,
+    "title": "AI Breakthrough",
+    "description": "Major advancements in AI transform multiple industries.",
+    "imageURL": "https://via.placeholder.com/300x200?text=2024",
+    "category": "Technology"
+  }
+]
