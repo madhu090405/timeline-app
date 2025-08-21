@@ -1,0 +1,23 @@
+[
+{
+"id": 1,
+"year": 2018,
+"title": "Project Kickoff",
+"date": "2018-03-12",
+"description": "Initial planning and scope definition."
+},
+{
+"id": 2,
+"year": 2020,
+"title": "MVP Release",
+"date": "2020-07-01",
+"description": "First public beta with core features."
+},
+{
+"id": 3,
+"year": 2023,
+"title": "v2 Launch",
+"date": "2023-11-05",
+"description": "Major redesign and performance improvements."
+}
+]
