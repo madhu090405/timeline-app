@@ -1,27 +1,41 @@
 import React from 'react'
 import { EventData } from '../types'
-import EventMarker from './EventMarker'
-
 
 interface TimelineProps {
-events: EventData[]
-onOpen: (event: EventData) => void
+  events: EventData[]
+  onOpen: (e: EventData) => void
 }
 
-
 export default function Timeline({ events, onOpen }: TimelineProps) {
-const sorted = [...events].sort((a, b) => a.year - b.year)
+  return (
+    <nav aria-label="Event timeline">
+      <ul style={{ display: 'flex', listStyle: 'none', gap: '1rem' }}>
+        {events.map((event, idx) => (
+          <li key={event.year}>
+            <button
+              onClick={() => onOpen(event)}
+              aria-current={idx === 0 ? 'step' : undefined} // active marker
+              aria-label={`Event in ${event.year}: ${event.title}`}
+            >
+              {event.year}
+            </button>
+            <button
+  onClick={() => onOpen(event)}
+  onKeyDown={(e) => {
+    if (e.key === 'ArrowRight' && idx < events.length - 1) {
+      document.querySelectorAll<HTMLButtonElement>('nav ul button')[idx + 1]?.focus()
+    }
+    if (e.key === 'ArrowLeft' && idx > 0) {
+      document.querySelectorAll<HTMLButtonElement>('nav ul button')[idx - 1]?.focus()
+    }
+  }}
+>
+  {event.year}
+</button>
 
-
-return (
-<section className="container timeline">
-<ul className="timeline-list">
-{sorted.map(ev => (
-<li key={ev.id} className="timeline-item">
-<EventMarker event={ev} onOpen={onOpen} />
-</li>
-))}
-</ul>
-</section>
-)
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
 }

@@ -38,21 +38,39 @@ body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI
 .dot { position: absolute; left: -40px; top: 18px; width: 14px; height: 14px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 3px rgba(37, 99, 235, .2); }
 .title { font-weight: 600; }
 .subtitle { color: var(--muted); font-size: 14px; }
-/* Light theme (default) */
+
 :root[data-theme='light'] {
   --text-color: black;
   --background-color: white;
 }
 
-/* Dark theme */
 :root[data-theme='dark'] {
   --text-color: white;
   --background-color: #121212;
 }
 
-/* Apply these theme variables */
+
 body {
   color: var(--text-color);
   background-color: var(--background-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+:root[data-theme='light'] {
+  --text-color: #000;
+  --background-color: #fff;
+}
+
+:root[data-theme='dark'] {
+  --text-color: #fff;
+  --background-color: #121212;
+}
+
+button {
+  background: var(--accent, #005fcc);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+button:focus {
+  outline: 3px solid #ffcc00; 
 }

@@ -1,39 +1,61 @@
-import React, { useEffect } from 'react'
-import { createPortal } from 'react-dom'
+import React, { useEffect, useRef } from 'react'
 import { EventData } from '../types'
 
-
 interface EventModalProps {
-event: EventData | null
-onClose: () => void
+  event: EventData | null
+  onClose: () => void
 }
 
-
 export default function EventModal({ event, onClose }: EventModalProps) {
-const modalRoot = document.getElementById('modal-root') as HTMLElement
-useEffect(() => {
-const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
-window.addEventListener('keydown', onKey)
-return () => window.removeEventListener('keydown', onKey)
-}, [onClose])
+  const dialogRef = useRef<HTMLDivElement>(null)
 
+  // Close on ESC
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [onClose])
 
-if (!event) return null
+  // Trap focus inside modal
+  useEffect(() => {
+    if (!event) return
+    const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    const first = focusable?.[0]
+    const last = focusable?.[focusable.length - 1]
 
+    const trap = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return
+      if (!first || !last) return
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener('keydown', trap)
+    return () => document.removeEventListener('keydown', trap)
+  }, [event])
 
-const content = (
-<div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
-<div className="modal-panel" onClick={e => e.stopPropagation()}>
-<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
-<h2 style={{ margin: 0 }}>{event.title} ({event.year})</h2>
-<button className="btn" onClick={onClose} aria-label="Close">✕</button>
-</div>
-<p className="subtitle" style={{ marginTop: 8 }}>{new Date(event.date).toLocaleString()}</p>
-{event.description && <p style={{ marginTop: 12 }}>{event.description}</p>}
-</div>
-</div>
-)
+  if (!event) return null
 
-
-return createPortal(content, modalRoot)
+  return (
+    <div
+      ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
+      className="modal"
+    >
+      <h2 id="modal-title">{event.title}</h2>
+      <p id="modal-description">{event.description}</p>
+      <button onClick={onClose} autoFocus>Close</button>
+    </div>
+  )
 }
